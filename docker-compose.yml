@@ -1,0 +1,25 @@
+services:
+  message-uat:
+    container_name: message-uat
+    image: panupongdeve/hello-service:0.0.1
+    environment:
+      - SERVER_NAME=MESSAGE_UAT
+    ports:
+      - 4040:8080
+  message-mirror-dev:
+    container_name: message-mirror-dev
+    image: panupongdeve/hello-service:0.0.1
+    environment:
+      - SERVER_NAME=MESSAGE_DEV
+    ports:
+      - 4041:8080
+  dubbugger:
+    container_name: debugger
+    image: panupongdeve/debugger
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./conf/:/etc/nginx/conf.d/:ro
